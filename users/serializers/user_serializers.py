@@ -52,6 +52,12 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         required = False
     )
     
+    typology_id = serializers.PrimaryKeyRelatedField(
+        queryset=Typology.objects.all(),
+        source = "typology",
+        required = False
+    )
+    
     active = serializers.BooleanField(required=True)
     
     class Meta:

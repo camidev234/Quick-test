@@ -62,8 +62,20 @@ class TypologyGetController(APIView):
             typology_found = self.typology_service.get_typology_by_id(pk)
             api_response = ApiSuccessResponse(200, typology_found, "Typology found successfully")
             return Response(api_response.get_response(), status=status.HTTP_200_OK)
+
+class TypologyUpdateController(APIView):
+    permission_classes = [IsAuthenticated]
     
+    def __init__(self, typology_service=None, paginator=None):
+        super().__init__()
+        self.typology_service = typology_service or TypologyService()
         
+    def put(self, request, pk):
+        if request.method == "PUT":
+            updated_typology = self.typology_service.update_typology(request.data, pk)
+            if updated_typology:
+                api_response = ApiSuccessResponse(200, updated_typology, "Typology updated successfully")
+                return Response(api_response.get_response(), status=status.HTTP_200_OK)
     
             
         

@@ -1,4 +1,4 @@
-from users.serializers.typology_serializers import TypologySaveSerializer, TypologySerializer
+from users.serializers.typology_serializers import TypologySaveSerializer, TypologySerializer, TypologyUpdateSerializer
 from rest_framework.exceptions import ValidationError
 from users.models.typology import Typology
 from rest_framework.exceptions import NotFound
@@ -31,3 +31,14 @@ class TypologyService:
         typology_serialized = TypologySerializer(typology_found)
         
         return typology_serialized.data
+    
+    def update_typology(self, data, id):
+        typology_to_update = self.get_typlogy_instance(id)
+        serializer = TypologyUpdateSerializer(typology_to_update, data=data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return serializer.data
+        
+        raise ValidationError(serializer.errors)
+        

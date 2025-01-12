@@ -34,3 +34,8 @@ class TypologySaveSerializer(serializers.ModelSerializer):
         model = Typology
         fields = ['id', 'typology_name']
 
+
+class TypologyUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Typology
+        fields = ['id', 'typology_name']
