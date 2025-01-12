@@ -33,3 +33,34 @@ Se recomienda usar un entorno virtual para manejar las dependencias de forma ais
 ```bash
 python -m venv venv
 ```
+
+Luego, active el entorno virtual:
+
+- En windows
+
+```bash
+venv\Scripts\activate
+```
+
+- En linux
+
+```bash
+source venv/bin/activate
+```   
+
+### 3. Instalar dependencias
+
+Con el entorno virtual activado, instale las dependencias del proyecto ejecutando:
+
+```bash
+pip install -r requirements.txt
+```
+Si desea instalar las dependencias manualmente, puede ejecutar:
+
+```bash
+pip install djangorestframework==3.15.2
+pip install djangorestframework_simplejwt==5.4.0
+pip install psycopg2-binary==2.9.10
+```
+
+
