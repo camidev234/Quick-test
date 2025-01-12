@@ -25,5 +25,13 @@ class ApiUrlService:
         api_url_found = self.get_api_url_instance(id)
         api_url_serialized = ApiUrlGetSerializer(api_url_found)
         return api_url_serialized.data
+    
+    def get_all_api_urls(self):
+        api_urls = ApiUrl.objects.all().order_by('id')
+        return api_urls
+    
+    # def update_api_url(self, data, id):
+    #     api_url_found = self.get_api_url_instance(id)
+    #     serializer = 
         
         

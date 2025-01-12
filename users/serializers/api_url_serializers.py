@@ -18,4 +18,9 @@ class ApiUrlGetSerializer(serializers.ModelSerializer):
         model = ApiUrl
         fields = ['id', 'name', 'url', 'method']
         
-        
+class ApiUrlUpdateSerializer(serializers.ModelSerializer):
+    
+
+    class Meta:
+        model = ApiUrl
+        fields = ['id', 'name', 'url', 'method']
