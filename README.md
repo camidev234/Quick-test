@@ -62,5 +62,20 @@ pip install djangorestframework==3.15.2
 pip install djangorestframework_simplejwt==5.4.0
 pip install psycopg2-binary==2.9.10
 ```
+### 4. Configuración de la base de datos
 
+Edite el archivo `settings.py` para configurar su base de datos. Por ejemplo, si está utilizando PostgreSQL, puede modificar los campos en la sección `DATABASES` como sigue:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nombre_de_la_bd',
+        'USER': 'usuario_de_la_bd',
+        'PASSWORD': 'contraseña_de_la_bd',
+        'HOST': 'localhost',  # O la dirección del servidor de la base de datos
+        'PORT': '5432',       # Puerto predeterminado para PostgreSQL
+    }
+}
+```
 
