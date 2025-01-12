@@ -6,7 +6,7 @@ from users.models.api_url import ApiUrl
 from users.models.typology_api_url import TypologyApiUrl
 
 class Command(BaseCommand):
-    help = "Seed db with initial required data"
+    help = "Seed db with initial permissions"
     
     def handle(self, *args, **options):
         
