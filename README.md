@@ -24,6 +24,7 @@ Primero, descargue el proyecto desde el repositorio:
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_PROYECTO>
+```
 
 ### 2. Crear un entorno virtual
 
@@ -31,3 +32,4 @@ Se recomienda usar un entorno virtual para manejar las dependencias de forma ais
 
 ```bash
 python -m venv venv
+```
