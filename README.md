@@ -73,9 +73,47 @@ DATABASES = {
         'NAME': 'nombre_de_la_bd',
         'USER': 'usuario_de_la_bd',
         'PASSWORD': 'contraseña_de_la_bd',
-        'HOST': 'localhost',  # O la dirección del servidor de la base de datos
-        'PORT': '5432',       # Puerto predeterminado para PostgreSQL
+        'HOST': 'localhost',
+        'PORT': '5432',       
     }
 }
 ```
 
+### 5. Aplicación de migraciones y seeding inicial
+
+#### Migraciones
+Después de configurar la base de datos, aplique las migraciones necesarias para crear las tablas requeridas en la base de datos. Ejecute el siguiente comando:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+**Seed inicial de datos**
+1. Creación de una tipología inicial y usuario administrador
+Ejecute el siguiente comando para crear:
+
+- Una tipología llamada Admin.
+- Un usuario inicial asociado a esta tipología.
+- Permisos asignados a este usuario para que pueda crear nuevas tipologías y gestionar permisos.
+
+```bash
+python manage.py users_seed
+```
+
+2. Creación de tipologías y permisos preconfigurados (opcional)
+Si desea evitar la configuración manual de nuevas tipologías y permisos, puede ejecutar el siguiente comando. Esto generará:
+
+- Todas las tipologías necesarias.
+- Permisos predefinidos para un contexto de negocio relacionado con restaurantes.
+
+```bash
+python manage.py permissions_seed
+```
+## 6. Ejecutar servidor
+
+Finalmente, levante el servidor local para probar el proyecto:
+
+```bash
+python manage.py runserver
+```
+Abra su navegador y acceda a http://127.0.0.1:8000.
