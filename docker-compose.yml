@@ -30,3 +30,11 @@ services:
 
 volumes:
   postgres_data:
+
+
+curl --location --globoff --request PATCH 'http://127.0.0.1{{your_port}}/api/users/reset_password/?page_size={{num_pages}}' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {{your_access_token}}' \
+--data '{
+  "password": "12345678"
+}'

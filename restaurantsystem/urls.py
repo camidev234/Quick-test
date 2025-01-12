@@ -17,8 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users import urls as user_urls
+from restaurants import urls as restaurant_urls
+from orders import urls as order_urls
+from menu import urls as menu_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(user_urls))
+    path('api/', include(user_urls)),
+    path('api/', include(restaurant_urls)),
+    path('api/', include(order_urls))
 ]

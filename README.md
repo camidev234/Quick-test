@@ -10,11 +10,12 @@ a grosso modo las siguientes funcionalidades:
 - Gestion de api url, estas son utiles para posteriormente poder asignar permisos a las tipologias de manera que la gestion de permisos sea granular en la medida que se requiera para cada tipologia de usuario.
 - Asignacion y gestion de permisos y revocacion de estos.
 - Creacion de usuarios, cada usuario puede o no estar asociados a un restaurante, esto para mantener la flexibilidad en casos de que un usuario tenga una tipologia por ejemplo "Administrador de sistema" que se encarga de configurar todo el flujo de los permisos para el aplicativo en general O un cliente que simplemente consula los restaurantes, menus y solicita pedidos.
-- Gestion de restaurantes, estos se podran actualizar y quedar desactivados, cuando se desactivan todos los
+- Gestion de restaurantes, estos se podran actualizar y quedar desactivados, cuando se desactiva un restaurante todos los usuarios asociados a este tambien.
 - Gestion de menus, cada uno de estos asociado a un restaurante
 - Gestion de categorias cada de los menus, estas tambien asociadas a los restaurantes 
 - Gestion de pedidos en cuanto su creacion, consulta y cambios de estado.
-- 
+
+**Como se menciono anteriormente, el acceso a cada funcionalidad dependera de la asignacion de permisos que se le hagan a las tipologias configuradas.** 
 
 Este proyecto está construido con **Django** y **Django REST Framework**, utilizando **PostgreSQL** como base de datos. A continuación, encontrará las instrucciones para configurarlo y ejecutarlo en su máquina local.
 
