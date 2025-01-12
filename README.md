@@ -3,6 +3,19 @@ Technical test - Quick
 
 # Proyecto de Prueba Técnica
 
+Este proyecto esta enfocado a la administracion de los pedidos de un restaurante, ahora bien ademas incluye 
+a grosso modo las siguientes funcionalidades:
+
+- Gestion de tipologias de usuario
+- Gestion de api url, estas son utiles para posteriormente poder asignar permisos a las tipologias de manera que la gestion de permisos sea granular en la medida que se requiera para cada tipologia de usuario.
+- Asignacion y gestion de permisos y revocacion de estos.
+- Creacion de usuarios, cada usuario puede o no estar asociados a un restaurante, esto para mantener la flexibilidad en casos de que un usuario tenga una tipologia por ejemplo "Administrador de sistema" que se encarga de configurar todo el flujo de los permisos para el aplicativo en general O un cliente que simplemente consula los restaurantes, menus y solicita pedidos.
+- Gestion de restaurantes, estos se podran actualizar y quedar desactivados, cuando se desactivan todos los
+- Gestion de menus, cada uno de estos asociado a un restaurante
+- Gestion de categorias cada de los menus, estas tambien asociadas a los restaurantes 
+- Gestion de pedidos en cuanto su creacion, consulta y cambios de estado.
+- 
+
 Este proyecto está construido con **Django** y **Django REST Framework**, utilizando **PostgreSQL** como base de datos. A continuación, encontrará las instrucciones para configurarlo y ejecutarlo en su máquina local.
 
 ## Requisitos Previos
@@ -89,7 +102,22 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 **Seed inicial de datos**
-1. Creación de una tipología inicial y usuario administrador
+1. Creación de tipologías y permisos preconfigurados **(recomendado)**
+Si desea evitar la configuración manual de nuevas tipologías y permisos, puede ejecutar el siguiente comando. Esto generará:
+
+- Todas las tipologías necesarias.
+- Permisos predefinidos para cada tipologia en un contexto de negocio relacionado con restaurantes, esto incluye tipologias como:
+
+- Administrador de sistema: encargado de configurar, tipologias, api urls y asignar o revocar permisos a las tipologias asi como de crear los restaurantes y administradores de restaurante y asociarlos a un restaurante
+- Administrador de restaurante: Encargado de crear menu items, repartidores (dealer) e incativarlos, menus y categorias de los menu para su restaurante
+- Repartidores: Ademas de que un admin de restaurante los puede crear, estos se pueden registrar por propia cuenta. Dentro de sus funcionalidades se encuentran la gestion de pedidos, desde su consulta hasta cambios de estado.
+- Clientes: Tambien se pueden registrar por si mismos, ademas pueden consultar menus, solicitar pedidos y consultar estos para tambien hacer cambios de estados como cancelar los pedidos. 
+
+```bash
+python manage.py permissions_seed
+```
+
+2. Creación de una tipología inicial y usuario administrador
 Ejecute el siguiente comando para crear:
 
 - Una tipología llamada Admin.
@@ -99,16 +127,12 @@ Ejecute el siguiente comando para crear:
 ```bash
 python manage.py users_seed
 ```
-
-2. Creación de tipologías y permisos preconfigurados (opcional)
-Si desea evitar la configuración manual de nuevas tipologías y permisos, puede ejecutar el siguiente comando. Esto generará:
-
-- Todas las tipologías necesarias.
-- Permisos predefinidos para un contexto de negocio relacionado con restaurantes.
+3. Creacion de datos requeridos en el sistema:
 
 ```bash
-python manage.py permissions_seed
+python manage.py required_seed
 ```
+
 ## 6. Ejecutar servidor
 
 Finalmente, levante el servidor local para probar el proyecto:
