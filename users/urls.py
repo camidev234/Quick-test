@@ -25,5 +25,5 @@ urlpatterns = [
     path('typologies/update/<int:pk>', typology_controller.TypologyUpdateController.as_view(), name="typology_update"),
     path('apiurl/find/<int:pk>', api_url_controller.ApiUrlGetController.as_view(), name="get_api_url"),
     path('apiurl/list', api_url_controller.ApiUrlListController.as_view(), name="api_url_list"),
-    path('apiurl/update/<int:pk>'),
+    path('apiurl/update/<int:pk>', api_url_controller.ApiUrlUpdateController.as_view(), name="update_api_url"),
 ]

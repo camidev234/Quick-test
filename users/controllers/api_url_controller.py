@@ -63,3 +63,17 @@ class ApiUrlListController(APIView):
                         api_response.get_response(),
                         status=status.HTTP_400_BAD_REQUEST
                     )
+                    
+class ApiUrlUpdateController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def __init__(self, api_url_service=None):
+        super().__init__()
+        self.api_url_service = api_url_service or ApiUrlService()
+        
+    def put(self, request, pk):
+        if request.method == "PUT":
+            api_url_updated = self.api_url_service.update_api_url(request.data, pk)
+            api_response = ApiSuccessResponse(200, api_url_updated, "Api url updated successfully")
+            return Response(api_response.get_response(), status=status.HTTP_200_OK)
+        

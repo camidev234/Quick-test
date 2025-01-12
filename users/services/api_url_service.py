@@ -1,7 +1,7 @@
 from rest_framework.exceptions import ValidationError, NotFound
 
 from users.models.api_url import ApiUrl
-from users.serializers.api_url_serializers import ApiUrlSaveSerializer, ApiUrlGetSerializer
+from users.serializers.api_url_serializers import ApiUrlSaveSerializer, ApiUrlGetSerializer, ApiUrlUpdateSerializer
 
 class ApiUrlService:
     
@@ -30,8 +30,13 @@ class ApiUrlService:
         api_urls = ApiUrl.objects.all().order_by('id')
         return api_urls
     
-    # def update_api_url(self, data, id):
-    #     api_url_found = self.get_api_url_instance(id)
-    #     serializer = 
+    def update_api_url(self, data, id):
+        api_url_found = self.get_api_url_instance(id)
+        serializer = ApiUrlUpdateSerializer(api_url_found, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return serializer.data            
+            
+        raise ValidationError(serializer.errors)
         
         
