@@ -14,3 +14,8 @@ class MenuCategorySaveSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Restaurant context is required.")
    
         return MenuCategory.objects.create(restaurant=restaurant, **validated_data)
+    
+class MenuCategoryGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuCategory
+        fields = ['id', 'category_name', 'created_at', 'active']
