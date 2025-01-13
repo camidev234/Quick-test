@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from menu.models.menu_item import MenuItem
 from restaurants.models.menu_category import MenuCategory
+from restaurants.serializers.menu_category_serializers import MenuCategoryGetSerializer
 
 class MenuItemSaveSerializer(serializers.ModelSerializer):
     
@@ -20,3 +21,12 @@ class MenuItemSaveSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Restaurant context is required.")
    
         return MenuItem.objects.create(restaurant=restaurant, **validated_data)
+    
+class MenuItemGetSerializer(serializers.ModelSerializer):
+    
+    category = MenuCategoryGetSerializer(read_only=True)
+    
+    class Meta:
+        model = MenuItem
+        fields = ['id', 'name', 'description', 'price', 'preparation_time', 'image_url', 'category', "active"]
+        

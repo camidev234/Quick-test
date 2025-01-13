@@ -17,3 +17,15 @@ class MenuItemSaveController(APIView):
         menu_item_saved = self.menu_item_service.save(request)
         api_repsonse = ApiSuccessResponse(201, menu_item_saved, "Menu item created successfully")
         return Response(api_repsonse.get_response(), status=status.HTTP_201_CREATED)
+    
+class MenuItemGetController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def __init__(self, menu_item_service=None):
+        super().__init__()
+        self.menu_item_service = menu_item_service or MenuItemService()
+        
+    def get(self, request, pk):
+        item = self.menu_item_service.get_item_by_id(pk)
+        api_response = ApiSuccessResponse(200, item, "Menu item found sucessfully")
+        return Response(api_response.get_response(), status=status.HTTP_200_OK)
