@@ -1,6 +1,6 @@
 from django.urls import path
 from restaurants.controllers.restaurant_controller import RestaurantSaveController, RestaurantListController, RestaurantGetController
-from .controllers.menu_category_controller import MenuCategorySaveController, MenuCategoryListController, MenuCategoryGetController 
+from .controllers.menu_category_controller import MenuCategorySaveController, MenuCategoryListController, MenuCategoryGetController, MenuCategoryUpdateController 
 
 urlpatterns = [
     path('restaurants/', RestaurantSaveController.as_view(), name="save_restaurant"),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('menu/categories/', MenuCategorySaveController.as_view(), name="save_menu_category"),
     path('menu/categories/list', MenuCategoryListController.as_view(), name="menu_categories_list"),
     path('menu/categories/find/<int:pk>', MenuCategoryGetController.as_view(), name="menu_category_find"),
+    path('menu/categories/update/<int:pk>', MenuCategoryUpdateController.as_view(), name="menu_category_update")
 ]

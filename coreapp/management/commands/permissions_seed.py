@@ -200,7 +200,7 @@ class Command(BaseCommand):
         
         ApiUrl.objects.get_or_create(
             name="Actualizar categoria de menu",
-            url="/api/menu/categories/update{pk}",
+            url="/api/menu/categories/update/{pk}",
             method="PUT"
         )
         

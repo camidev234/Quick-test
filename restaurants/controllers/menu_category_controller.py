@@ -59,3 +59,16 @@ class MenuCategoryGetController(APIView):
             category = self.menu_category_service.get_by_id(pk)
             api_response = ApiSuccessResponse(200, category, "Category get successfully")
             return Response(api_response.get_response(), status=status.HTTP_200_OK)
+        
+class MenuCategoryUpdateController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def __init__(self, menu_category_service=None):
+        super().__init__()
+        self.menu_category_service = menu_category_service or MenuCategoryService()
+        
+    
+    def put(self, request, pk):
+        category_updated = self.menu_category_service.update_by_id(request.data, pk)
+        api_response = ApiSuccessResponse(200, category_updated, "Category updated successfully")
+        return Response(api_response.get_response(), status=status.HTTP_200_OK)

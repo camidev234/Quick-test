@@ -19,3 +19,11 @@ class MenuCategoryGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuCategory
         fields = ['id', 'category_name', 'created_at', 'active']
+        
+class MenuCategoryUpdateSerializer(serializers.ModelSerializer):
+    
+    active = serializers.BooleanField(required=True)
+    
+    class Meta:
+        model = MenuCategory
+        fields = ['id', 'category_name', 'active']

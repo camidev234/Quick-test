@@ -1,5 +1,5 @@
 from rest_framework.exceptions import ValidationError, NotFound
-from restaurants.serializers.menu_category_serializers import MenuCategorySaveSerializer, MenuCategoryGetSerializer
+from restaurants.serializers.menu_category_serializers import MenuCategorySaveSerializer, MenuCategoryGetSerializer, MenuCategoryUpdateSerializer
 from restaurants.models.menu_category import MenuCategory
 
 class MenuCategoryService:
@@ -35,4 +35,13 @@ class MenuCategoryService:
         category_serialized = MenuCategoryGetSerializer(category)
         return category_serialized.data
          
+         
+    def update_by_id(self, data, id):
+        category_to_update = self.get_menu_category_instance(id)
+        category_updated = MenuCategoryUpdateSerializer(category_to_update, data=data)
+        if category_updated.is_valid():
+            category_updated.save()
+            return category_updated.data
+        
+        raise ValidationError(category_updated.errors)
             
