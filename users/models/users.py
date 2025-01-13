@@ -21,8 +21,8 @@ class User(AbstractBaseUser):
     address = models.TextField(max_length=80)
     # password = models.CharField(max_length=128)
     active = models.BooleanField(default=True)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, null=True, blank=True)
-    typology = models.ForeignKey(Typology, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, null=True, blank=True, related_name="users")
+    typology = models.ForeignKey(Typology, on_delete=models.CASCADE, related_name="users")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
