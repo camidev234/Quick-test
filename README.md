@@ -112,8 +112,10 @@ Si desea evitar la configuración manual de nuevas tipologías y permisos, puede
 
 - Administrador de sistema: encargado de configurar, tipologias, api urls y asignar o revocar permisos a las tipologias asi como de crear los restaurantes y administradores de restaurante y asociarlos a un restaurante
 - Administrador de restaurante: Encargado de crear menu items, repartidores (dealer) e incativarlos, menus y categorias de los menu para su restaurante
-- Repartidores: Ademas de que un admin de restaurante los puede crear, estos se pueden registrar por propia cuenta. Dentro de sus funcionalidades se encuentran la gestion de pedidos, desde su consulta hasta cambios de estado.
-- Clientes: Tambien se pueden registrar por si mismos, ademas pueden consultar menus, solicitar pedidos y consultar estos para tambien hacer cambios de estados como cancelar los pedidos. 
+- Repartidores: Ademas de que un admin de restaurante los puede crear, estos se pueden registrar por propia cuenta.
+- Clientes: Tambien se pueden registrar por si mismos, ademas pueden consultar menus, solicitar pedidos. 
+
+De esta manera al ejecutar este script, teniendo en cuenta que ya se cuenta con tipologias y permisos puede iniciar creando un restaurante y de ahi en adelante todo lo descrito anteriormente y de acuerdo a la documentacion de API.
 
 ```bash
 python manage.py permissions_seed

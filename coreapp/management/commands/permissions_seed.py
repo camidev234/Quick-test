@@ -247,6 +247,12 @@ class Command(BaseCommand):
             method="GET"
         )
         
+        ApiUrl.objects.get_or_create(
+            name="Obtener listado de menu items para el cliente",
+            url="/api/menuitems/list/{pk}",
+            method="GET"
+        )
+        
         # asign permissions
         for i in range(1, 23):
             TypologyApiUrl.objects.get_or_create(
@@ -317,6 +323,11 @@ class Command(BaseCommand):
         TypologyApiUrl.objects.get_or_create(
             typology_id = 4,
             api_url_id = 32
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 4,
+            api_url_id = 35
         )
         
         TypologyApiUrl.objects.get_or_create(
