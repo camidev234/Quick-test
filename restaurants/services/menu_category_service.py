@@ -1,5 +1,5 @@
-from rest_framework.exceptions import ValidationError
-from restaurants.serializers.menu_category_serializers import MenuCategorySaveSerializer
+from rest_framework.exceptions import ValidationError, NotFound
+from restaurants.serializers.menu_category_serializers import MenuCategorySaveSerializer, MenuCategoryGetSerializer
 from restaurants.models.menu_category import MenuCategory
 
 class MenuCategoryService:
@@ -22,4 +22,17 @@ class MenuCategoryService:
         else:
             categories = MenuCategory.objects.all().order_by('id')
             return categories
+        
+    def get_menu_category_instance(self, pk):
+        try:
+            menu_category = MenuCategory.objects.get(id=pk)
+            return menu_category
+        except MenuCategory.DoesNotExist:
+            raise NotFound("The menu category does not exists")
+        
+    def get_by_id(self, id):
+        category = self.get_menu_category_instance(id)
+        category_serialized = MenuCategoryGetSerializer(category)
+        return category_serialized.data
+         
             

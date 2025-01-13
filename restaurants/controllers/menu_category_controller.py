@@ -39,11 +39,23 @@ class MenuCategoryListController(APIView):
             paginator_object = self.paginator.get_paginator_object()
             
             return paginator_object.get_paginated_response(serialized_categories.data)
-        except Exception as e:
-            print(e)  
-            # error = {"error": "El parámetro 'page_size' debe ser un número válido"}   
-            # api_response = ApiErrorResponse(400, message=error)
-            # return Response(
-            #     api_response.get_response(),
-            #     status=status.HTTP_400_BAD_REQUEST
-            # )
+        except (ValueError, TypeError) as e:
+            error = {"error": "El parámetro 'page_size' debe ser un número válido"}   
+            api_response = ApiErrorResponse(400, message=error)
+            return Response(
+                api_response.get_response(),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+class MenuCategoryGetController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def __init__(self, menu_category_service=None):
+        super().__init__()
+        self.menu_category_service = menu_category_service or MenuCategoryService()
+        
+    def get(self, request, pk):
+        if request.method == "GET":
+            category = self.menu_category_service.get_by_id(pk)
+            api_response = ApiSuccessResponse(200, category, "Category get successfully")
+            return Response(api_response.get_response(), status=status.HTTP_200_OK)
