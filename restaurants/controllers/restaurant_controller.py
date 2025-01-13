@@ -50,5 +50,18 @@ class RestaurantListController(APIView):
                     api_response.get_response(),
                     status=status.HTTP_400_BAD_REQUEST
                 )
+                
+class RestaurantGetController(APIView):
+    
+    permission_classes = [IsAuthenticated]
+    
+    def  __init__(self, restaurant_service=None):
+        super().__init__()
+        self.restaurant_service = restaurant_service or RestaurantService()
         
+    def get(self, request, pk):
+        if request.method == "GET":
+            restaurant = self.restaurant_service.get_by_id(pk)
+            api_response = ApiSuccessResponse(200, restaurant, "Restaurant found successfully")
+            return Response(api_response.get_response(), status=status.HTTP_200_OK)
         
