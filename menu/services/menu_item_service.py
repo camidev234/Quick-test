@@ -1,4 +1,4 @@
-from menu.serializers.menu_item_serializers import MenuItemSaveSerializer, MenuItemGetSerializer
+from menu.serializers.menu_item_serializers import MenuItemSaveSerializer, MenuItemGetSerializer, MenuItemUpdateSerializer
 from rest_framework.exceptions import ValidationError, NotFound, PermissionDenied
 from menu.models.menu_item import MenuItem
 
@@ -33,5 +33,14 @@ class MenuItemService:
             else:
                 raise PermissionDenied("You do not have access to the menu items if you do not belong to a restaurant")
         else:
-            items = MenuItem.objects.filter(restaurant_id = pk).order_by('id')
+            items = MenuItem.objects.filter(restaurant_id = pk, active=True).order_by('id')
             return items
+        
+    def update_by_id(self, pk, data):
+        item_to_update = self.get_item_instance(pk)
+        serializer = MenuItemUpdateSerializer(item_to_update, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return serializer.data
+            
+        raise ValidationError(serializer.errors)

@@ -29,4 +29,17 @@ class MenuItemGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = ['id', 'name', 'description', 'price', 'preparation_time', 'image_url', 'category', 'restaurant_id', "active"]
-        
+
+
+class MenuItemUpdateSerializer(serializers.ModelSerializer):
+    category_id = serializers.PrimaryKeyRelatedField(
+        queryset=MenuCategory.objects.all(),
+        source="category",
+        required=True
+    )
+    
+    active = serializers.BooleanField(required=True)
+    
+    class Meta:
+        model = MenuItem
+        fields = ['id', 'name', 'description', 'price', 'preparation_time', 'image_url', 'category_id', 'active']

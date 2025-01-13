@@ -84,3 +84,15 @@ class MenuItemListCustomerController(APIView):
                 api_response.get_response(),
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+class MenuItemUpdateController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def __init__(self, menu_item_service=None):
+        super().__init__()
+        self.menu_item_service = menu_item_service or MenuItemService()
+        
+    def put(self, request, pk):
+        item_updated = self.menu_item_service.update_by_id(pk, request.data)
+        api_response = ApiSuccessResponse(200, item_updated, "Item updated Successfully")
+        return Response(api_response.get_response(), status=status.HTTP_200_OK)
