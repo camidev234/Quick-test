@@ -120,8 +120,8 @@ De esta manera al ejecutar este script, teniendo en cuenta que ya se cuenta con 
 ```bash
 python manage.py permissions_seed
 ```
-
-2. Creación de una tipología inicial y usuario administrador
+**Opcional**
+2. Creación de una tipología inicial y usuario administrador **(Ejecutar si prefiere no usar el primero que incluye ya permisos y demas)**
 Ejecute el siguiente comando para crear:
 
 - Una tipología llamada Admin.
