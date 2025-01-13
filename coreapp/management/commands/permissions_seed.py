@@ -204,6 +204,49 @@ class Command(BaseCommand):
             method="PUT"
         )
         
+        #28
+        ApiUrl.objects.get_or_create(
+            name="Crear menu item",
+            url="/api/menuitems/",
+            method="POST"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Obtener listado de menu items",
+            url="/api/menuitems/list",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Obtener item por id",
+            url="/api/menuitems/find/{pk}",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Actualizar item",
+            url="/api/menuitems/update/{pk}",
+            method="GET"
+        )
+        #32
+        ApiUrl.objects.get_or_create(
+            name="Crear orden",
+            url="/api/orders/",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Cronsultar listado de ordenes del restaurante",
+            url="/api/orders/list/restaurant",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Cronsultar listado de ordenes (repartidor)",
+            url="/api/orders/list/dealer",
+            method="GET"
+        )
+        
         # asign permissions
         for i in range(1, 23):
             TypologyApiUrl.objects.get_or_create(
@@ -234,6 +277,46 @@ class Command(BaseCommand):
         TypologyApiUrl.objects.get_or_create(
             typology_id = 2,
             api_url_id = 27
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 28
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 29
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 30
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 31
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 32
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 33
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 3,
+            api_url_id = 34
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 4,
+            api_url_id = 32
         )
         
         TypologyApiUrl.objects.get_or_create(

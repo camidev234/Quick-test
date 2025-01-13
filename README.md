@@ -15,7 +15,8 @@ a grosso modo las siguientes funcionalidades:
 - Gestion de categorias cada de los menus, estas tambien asociadas a los restaurantes 
 - Gestion de pedidos en cuanto su creacion, consulta y cambios de estado.
 
-**Como se menciono anteriormente, el acceso a cada funcionalidad dependera de la asignacion de permisos que se le hagan a las tipologias configuradas.** 
+**Como se menciono anteriormente, el acceso a cada funcionalidad dependera de la asignacion de permisos que se le hagan a las tipologias configuradas.**
+**De la misma manera, un usuario al intentar acceder a un recurso el cual su tipologia no tiene acceso, se mostrara el correspondiente mensaje de error devuelto por API** 
 
 Este proyecto está construido con **Django** y **Django REST Framework**, utilizando **PostgreSQL** como base de datos. A continuación, encontrará las instrucciones para configurarlo y ejecutarlo en su máquina local.
 
@@ -128,10 +129,10 @@ Ejecute el siguiente comando para crear:
 ```bash
 python manage.py users_seed
 ```
-3. Creacion de datos requeridos en el sistema:
+3. Creacion de estados de los pedidos **(ejecutar este script es obligatorio)**:
 
 ```bash
-python manage.py required_seed
+python manage.py status_seed
 ```
 
 ## 6. Ejecutar servidor
