@@ -179,6 +179,31 @@ class Command(BaseCommand):
             method="PUT"
         )
         
+        ApiUrl.objects.get_or_create(
+            name="Crear categoria de menu",
+            url="/api/menu/categories/",
+            method="POST"
+        )
+        
+        # menu category
+        ApiUrl.objects.get_or_create(
+            name="Obtener listado de categorias de menu",
+            url="/api/menu/categories/list",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Obtener menu de categoria por id",
+            url="/api/menu/categories/find/{pk}",
+            method="GET"
+        )
+        
+        ApiUrl.objects.get_or_create(
+            name="Actualizar categoria de menu",
+            url="/api/menu/categories/update{pk}",
+            method="PUT"
+        )
+        
         # asign permissions
         for i in range(1, 23):
             TypologyApiUrl.objects.get_or_create(
@@ -189,6 +214,26 @@ class Command(BaseCommand):
         TypologyApiUrl.objects.get_or_create(
             typology_id = 2,
             api_url_id = 23
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 24
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 25
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 26
+        )
+        
+        TypologyApiUrl.objects.get_or_create(
+            typology_id = 2,
+            api_url_id = 27
         )
         
         TypologyApiUrl.objects.get_or_create(
@@ -289,6 +334,16 @@ class Command(BaseCommand):
             address = "Transversal 93 # 51 - 98 Und. 24 -25",
             typology_id = 1,
         )
+        
+        # User.objects.get_or_create(
+        #     first_name =  "Test",
+        #     last_name = "Restaurant Admin",
+        #     email = "resadmintest@gmail.com",
+        #     password = make_password("Quick2024*"),
+        #     phone = "34445555",
+        #     address = "Transversal 93 # 51 - 98 Und. 24 -25",
+        #     typology_id = 2,
+        # )
         
         self.stdout.write(self.style.SUCCESS("Successfully seeded dbs"))
         
