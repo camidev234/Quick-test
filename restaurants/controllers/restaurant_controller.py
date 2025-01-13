@@ -65,3 +65,16 @@ class RestaurantGetController(APIView):
             api_response = ApiSuccessResponse(200, restaurant, "Restaurant found successfully")
             return Response(api_response.get_response(), status=status.HTTP_200_OK)
         
+
+class RestaurantUpdateController(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def  __init__(self, restaurant_service=None):
+        super().__init__()
+        self.restaurant_service = restaurant_service or RestaurantService()
+        
+    def put(self, request, pk):
+        restaurant_updated = self.restaurant_service.update_by_id(request.data, pk)
+        api_response = ApiSuccessResponse(200, restaurant_updated, "Restaurant updated successfully")
+        return Response(api_response.get_response(), status=status.HTTP_200_OK)
+        

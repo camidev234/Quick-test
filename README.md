@@ -106,7 +106,7 @@ python manage.py migrate
 1. Creación de tipologías y permisos preconfigurados **(recomendado)**
 Si desea evitar la configuración manual de nuevas tipologías y permisos, puede ejecutar el siguiente comando. Esto generará:
 
-- Todas las tipologías necesarias.
+- Todas las tipologías necesarias (en un contexto de un restaurante)
 - Permisos predefinidos para cada tipologia en un contexto de negocio relacionado con restaurantes, esto incluye tipologias como:
 
 - Administrador de sistema: encargado de configurar, tipologias, api urls y asignar o revocar permisos a las tipologias asi como de crear los restaurantes y administradores de restaurante y asociarlos a un restaurante
@@ -123,7 +123,7 @@ Ejecute el siguiente comando para crear:
 
 - Una tipología llamada Admin.
 - Un usuario inicial asociado a esta tipología.
-- Permisos asignados a este usuario para que pueda crear nuevas tipologías y gestionar permisos.
+- Permisos asignados a este usuario para que pueda crear nuevas tipologías, gestionar permisos y de ahi en adelante todo el proceso de crear menu items y demas.
 
 ```bash
 python manage.py users_seed

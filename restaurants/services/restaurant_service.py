@@ -1,4 +1,4 @@
-from restaurants.serializers.restaurant_serializer import RestaurantSaveSerializer, RestaurantGetSerializer
+from restaurants.serializers.restaurant_serializer import RestaurantSaveSerializer, RestaurantGetSerializer, RestaurantUpdateSerializer
 from rest_framework.exceptions import ValidationError, NotFound
 from restaurants.models.restaurant import Restaurant
 
@@ -28,3 +28,12 @@ class RestaurantService:
         restaurant = self.get_restaurant_instance(id)
         restaurant_serialized = RestaurantGetSerializer(restaurant)
         return restaurant_serialized.data
+    
+    def update_by_id(self, data, id):
+        restaurant_to_update = self.get_restaurant_instance(id)
+        restaurant_updated = RestaurantUpdateSerializer(restaurant_to_update, data=data)
+        if restaurant_updated.is_valid():
+            restaurant_updated.save()
+            return restaurant_updated.data
+        
+        raise ValidationError(restaurant_updated.errors)
